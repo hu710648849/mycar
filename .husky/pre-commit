@@ -5,4 +5,4 @@
 export PATH="/d/NVM/nodejs:/d/NVM/nodejs/node_global:$PATH"
 
 # 执行 lint
-pnpm lint
+pnpm lint-staged
