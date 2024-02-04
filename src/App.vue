@@ -1,10 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-<<<<<<< HEAD
-=======
-// console.log(uname)
->>>>>>> 8d9c7e3ec2ca7d1084b57871398926c711b1a7b9
 </script>
 
 <template>
