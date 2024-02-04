@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 设置 PATH 以包含 node 和 pnpm 的路径
+export PATH="/d/NVM/nodejs:/d/NVM/nodejs/node_global:$PATH"
+
+# 执行 lint
+pnpm lint

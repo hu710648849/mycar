@@ -1,5 +1,5 @@
 import './assets/main.css'
-
+// console.log(gaga)
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
