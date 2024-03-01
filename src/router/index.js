@@ -1,18 +1,57 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
-// createRouter 创建路由实例，===> new VueRouter()
-// 1. history模式: createWebHistory()   http://xxx/user
-// 2. hash模式: createWebHashHistory()  http://xxx/#/user
-
-// vite 的配置 import.meta.env.BASE_URL 是路由的基准地址，默认是 ’/‘
-// https://vitejs.dev/guide/build.html#public-base-path
-
-// 如果将来你部署的域名路径是：http://xxx/my-path/user
-// vite.config.ts  添加配置  base: my-path，路由这就会加上 my-path 前缀了
+// import { useUserStore } from '@/stores'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: []
+  routes: [
+    { path: '/login', component: () => import('@/views/login/LoginPage.vue') }, // 登录页
+    {
+      path: '/ridecar',
+      component: () => import('@/views/driverlist/rideCarPage.vue')
+    }, // 点击打车go按钮，跳转到这个输入终点的页面
+    {
+      path: '/driverlist',
+      component: () => import('@/views/driverlist/driverListPage.vue')
+    }, // 附近司机列表详情页，输入终点站地址后点击GO按钮跳转到这个页面
+    {
+      path: '/driverdetails',
+      component: () => import('@/views/driverlist/driverDetailsPage.vue')
+    }, // 司机详情页
+    {
+      path: '/',
+      component: () => import('@/views/layout/index.vue'),
+      redirect: '/layout/home',
+      children: [
+        {
+          path: '/layout/home',
+          component: () => import('@/views/layout/homePage.vue')
+        },
+        {
+          path: '/layout/category',
+          component: () => import('@/views/layout/categoryPage.vue')
+        },
+        {
+          path: '/layout/pay',
+          component: () => import('@/views/layout/payPage.vue')
+        },
+        {
+          path: '/layout/user',
+          component: () => import('@/views/layout/userPage.vue')
+        }
+      ]
+    }
+  ]
 })
+
+// router.beforeEach((to, from, next) => {
+//   const useStore = useUserStore()
+//   // 如果没有token且访问的是非登录页，则跳转到登录页
+//   if (!useStore.token && to.path !== '/login') {
+//     next('/login')
+//   } else {
+//     // 其他情况正常放行
+//     next()
+//   }
+// })
 
 export default router

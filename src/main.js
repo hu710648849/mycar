@@ -4,6 +4,7 @@ import { createApp } from 'vue'
 // import persist from 'pinia-plugin-persistedstate'
 import pinia from './stores/index'
 import '@/assets/main.scss'
+import elementIcon from '../plugins/icons'
 
 import App from './App.vue'
 import router from './router'
@@ -13,4 +14,6 @@ const app = createApp(App)
 // app.use(createPinia().use(persist))
 app.use(pinia) // pinia独立维护
 app.use(router)
+app.use(elementIcon)
+
 app.mount('#app')
